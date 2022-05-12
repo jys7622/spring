@@ -1,0 +1,9 @@
+package com.webjjang.board.vo;
+
+public class BoardVO {
+	
+	private long no;
+	private String title;
+	private String content;
+	private String writer;
+}

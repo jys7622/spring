@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace는 충돌을 방지하기위한 폴더역할(이름구분해야함)  -->
+<mapper namespace="com.webjjang.board.mapper.BoardMapper">
+
+	<!-- 	// 1. 리스트 -->
+	<!--select태그의 id이름과 BoardMapper.java(인터페이스 클래스)에 선언한 메서드 이름 맞춰준다  -->
+	<!-- 리절트 타입은 데이터한개당 무슨타입인지 결정 BoardVO타입 -->
+	<select id="list" resultType="com.webjjang.board.vo.BoardVO">
+		select no, title, writer, writeDate, hit
+		from (
+			select rownum rnum, no, title, writer, writeDate, hit
+			from(
+				select no, title, writer, writeDate, hit
+				from board
+				order by no desc
+			)
+		)	
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	<!-- 	// List<BoardVO>는 데이터베이스에 BoardVO객체가 담겨있는 LIST를 달라고 요청 -->
+	<!-- 	//throws Exception은 추상클래스 선언만하고 사용하지 않는다는 의미. -->
+	 
+	<!-- 	// 2. 전체 데이터 개수 -->
+	<select id="getTotalRow" resultType="Long">
+		select count(*) from board
+	</select>
+	<!-- 	// 2-1.보기 -->
+	<select id="view" resultType="com.webjjang.board.vo.BoardVO">
+	</select>
+	<!-- 	// 2-2. 조회수 1증가 -->
+	<update id="increase">
+	</update>
+	<!-- 	// 3. 글쓰기 -->
+	<insert id="write">
+	</insert>
+	<!-- 	// 4. 수정 -->
+	<update id="update">
+	</update>
+	<!-- 	// 5. 삭제 -->
+	<delete id="delete">
+	</delete>
+
+</mapper>

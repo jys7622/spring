@@ -1,0 +1,28 @@
+package com.webjjang.board.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.webjjang.board.mapper.BoardMapper;
+
+// 서비스 자동생성 어노테이션 
+// @Controller, @Service, @Repository, @Component, RestController
+// -> servlet-context.xml에 scan 패키지 안쪽에 존재해야됨
+
+@Service
+public class BoardService {
+	
+	//service 안에는 dao가 필요하지만 dao대신에 mapper를 사용
+	// 인터페이스로 만들어놓은 BoardMapper에 mybatis가 dao를 생성 -> 만들어진 dao를 new로 생성해서
+	// mapper에 집어넣는다.
+	
+	private BoardMapper mapper;
+
+	@Inject
+	public void setMapper(BoardMapper mapper) {
+		this.mapper = mapper;
+	}
+	
+	
+}
