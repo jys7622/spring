@@ -47,8 +47,20 @@ public class BoardService {
 	 }
 	 // 3. write
 	 public int write(BoardVO vo) throws Exception{
+		 System.out.println("BoardService.write().vo -" + vo);
 		 return mapper.write(vo);
 		 
+	 }
+	 // 4. update
+	 public int update(BoardVO vo) throws Exception{
+		 System.out.println("BoardService.update().vo -" + vo);
+		 return mapper.update(vo);
+	 }
+	 
+	 // 4. delete
+	 public int delete(long no) throws Exception{
+		 System.out.println("BoardService.delete().no -" + no);
+		 return mapper.delete(no);
 	 }
 	
 }

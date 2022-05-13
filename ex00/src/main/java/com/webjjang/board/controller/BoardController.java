@@ -69,7 +69,32 @@ public class BoardController {
 		return "redirect:list.do";
 	}
 	//4. updateForm
+	//view.jsp에서 no를 받아서 쓴다. 데이터를 가져오면 model이필요. 모델에 담아서 jsp로 넘긴다
+	@GetMapping("update.do")
+	public String updateForm(long no, Model model) throws Exception{
+		System.out.println("BoardController.updateForm().no-" + no);
+		
+		//updateForm에서 update하려고 할 때 조회수가 늘어나면 안되니까 increase값을 0으로 넘긴다.
+		model.addAttribute("vo", service.view(no, 0));
+		
+		return "board/update";
+	}
 	//4.1 update
+	@PostMapping("update.do")
+	public String update(BoardVO vo) throws Exception{
+		System.out.println("BoardController.update().vo-" + vo);
+		service.update(vo);
+		
+		return "redirect:view.do?no= " + vo.getNo() + "&inc=0";
+		
+	}
 	//5. delete
+	@GetMapping("delete.do")
+	public String delete(long no) throws Exception{
+		System.out.println("BoardController.delete().no-" + no);
+		//서비스에서 delete메소드를 호출하여 no를 넘겨라
+		service.delete(no);
+		return "redirect:list.do";
+	}
 
 }
