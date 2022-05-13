@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,24 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+	  .dataRow:hover {
+		  background: #eee;
+		  cursor: pointer;
+	  }
+  </style>
+  <script>
+	  $(function(){
+		  $(".dataRow").click(function(){
+			  //this = 현재 이벤트가 발생한 곳에서.find 찾아라(".no") 클래스명이 no인것을
+		
+			  var no = $(this).find(".no").text();
+			  location = "view.do?no=" + no + "&inc=1";
+			  })
+	  })
+
+  </script>
 </head>
 <body>
 <div class ="container">
@@ -25,15 +44,18 @@
  </tr>
  <c:forEach items="${list }" var="vo">
  	<tr class ="dataRow">
- 		<td>${vo.no }</td>
+ 		<td class="no">${vo.no }</td>
  		<td>${vo.title }</td>
  		<td>${vo.writer }</td>
- 		<td>${vo.writeDate }</td>
+ 		<td><fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/></td>
  		<td>${vo.hit }</td>
- 	
  	</tr>
- 
  </c:forEach>
+ <tr>
+	 <td colsapn="5">
+		 <a href="write.do" class="btn btn-default">쓰기</a>
+	 </td>
+ </tr>
 </table>
 </div>
 </body>

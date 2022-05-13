@@ -23,7 +23,7 @@
 	
 	<!-- URL과 상관이 있는 객체 
 		 base-package로 설정된 위치의 아래 찾아보기 -->
-	<context:component-scan base-package="com.webjjang" />
+	<context:component-scan base-package="com.webjjang.*" />
 	
 	
 	
