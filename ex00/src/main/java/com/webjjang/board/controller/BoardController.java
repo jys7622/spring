@@ -70,7 +70,7 @@ public class BoardController {
 	}
 	//4. updateForm
 	//view.jsp에서 no를 받아서 쓴다. 데이터를 가져오면 model이필요. 모델에 담아서 jsp로 넘긴다
-	@GetMapping("update.do")
+	@GetMapping("/update.do")
 	public String updateForm(long no, Model model) throws Exception{
 		System.out.println("BoardController.updateForm().no-" + no);
 		
@@ -80,7 +80,7 @@ public class BoardController {
 		return "board/update";
 	}
 	//4.1 update
-	@PostMapping("update.do")
+	@PostMapping("/update.do")
 	public String update(BoardVO vo) throws Exception{
 		System.out.println("BoardController.update().vo-" + vo);
 		service.update(vo);
@@ -89,7 +89,7 @@ public class BoardController {
 		
 	}
 	//5. delete
-	@GetMapping("delete.do")
+	@GetMapping("/delete.do")
 	public String delete(long no) throws Exception{
 		System.out.println("BoardController.delete().no-" + no);
 		//서비스에서 delete메소드를 호출하여 no를 넘겨라
