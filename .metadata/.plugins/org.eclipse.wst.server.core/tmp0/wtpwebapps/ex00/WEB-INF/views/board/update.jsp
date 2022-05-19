@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+	
   
   <script type="text/javascript">
 	  $(function(){
@@ -47,10 +48,35 @@
 	<!-- input 태그의 name이 게터의 이름과 맞아야 데이터가 자동으로 저장된다 -->
 	<input type="text" name="writer" id="writer" class="form-control" value="${vo.writer}">
 </div>
-<button>수정</button>
+<button id ="saveBtn" type="submit">수정</button>
 <button type="reset">새로입력</button>
 <button type="button" id="cancelBtn">취소</button>
 </form>
 </div>
+<script type="text/javascript">
+			
+				var oEditors = [];
+				nhn.husky.EZCreator.createInIFrame({
+				oAppRef: oEditors,
+				elPlaceHolder: "content",
+				sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+				fCreator: "createSEditor2",
+		        fOnBeforeUnload : function() {
+		        	
+		            }
+				});
+				$("#saveBtn").click(function(){
+			        //id가 smarteditor인 textarea에 에디터에서 대입
+			        oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+			        // 이부분에 에디터 validation 검증
+			        //폼 submit
+			        $("#frm").submit();
+				
+			    });
+			    var pasteHTML = function(filename){
+				    var sHTML = '<img src="${pageContext.request.contextPath}/resources/upload/'+filename+'">';
+				    oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
+				};
+			</script>
 </body>
 </html>
