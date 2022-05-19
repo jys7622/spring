@@ -1,5 +1,11 @@
 package com.webjjang.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.webjjang.board.service.BoardService;
 import com.webjjang.board.vo.BoardVO;
@@ -95,6 +104,20 @@ public class BoardController {
 		//서비스에서 delete메소드를 호출하여 no를 넘겨라
 		service.delete(no);
 		return "redirect:list.do";
+	}
+	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+	public String fileUpload(Model model, MultipartRequest multipartRequest, HttpServletRequest request) throws IOException{
+		MultipartFile imgfile = multipartRequest.getFile("Filedata");
+		Calendar cal = Calendar.getInstance();
+		String fileName = imgfile.getOriginalFilename();
+		String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		String replaceName = cal.getTimeInMillis() + fileType;  
+		
+		String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"resources/upload";
+		FileUpload.fileUpload(imgfile, path, replaceName);
+		model.addAttribute("path", path);
+		model.addAttribute("filename", replaceName);
+		return "file_upload";
 	}
 
 }
