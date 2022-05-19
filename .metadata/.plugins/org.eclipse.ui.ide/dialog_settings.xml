@@ -112,6 +112,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\illb\Desktop\이미지업로드\SE_Image_Upload_Sample"/>
 			<item value="C:\Users\illb\workspace\spring"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

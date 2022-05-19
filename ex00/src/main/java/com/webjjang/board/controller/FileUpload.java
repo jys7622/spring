@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUpload {
 	
 	public static void fileUpload(MultipartFile fileData, String path, String fileName) throws IOException {
+		System.out.println("컨트롤러에서 호출함");
 		String originalFileName = fileData.getOriginalFilename();
 		String contentType = fileData.getContentType();
 		long fileSize = fileData.getSize();

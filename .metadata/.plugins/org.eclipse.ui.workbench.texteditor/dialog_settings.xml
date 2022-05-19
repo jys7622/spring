@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="file"/>
+		<item key="selection" value="callFile"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="file"/>
 			<item value="callfile"/>
-			<item value="call"/>
+			<item value="common"/>
+			<item value="file"/>
 			<item value="html5"/>
+			<item value="call"/>
 			<item value="html5file"/>
 			<item value="Auto"/>
 			<item value="auto"/>
@@ -22,7 +23,6 @@
 			<item value="log"/>
 			<item value="lombok"/>
 			<item value="driven"/>
-			<item value="mvc"/>
 		</list>
 		<list key="replacehistory">
 		</list>

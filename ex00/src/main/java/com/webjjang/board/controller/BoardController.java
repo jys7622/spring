@@ -22,6 +22,8 @@ import com.webjjang.board.service.BoardService;
 import com.webjjang.board.vo.BoardVO;
 import com.webjjang.util.PageObject;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -31,7 +33,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	//1. list
-	@GetMapping("/list.do")
+	@GetMapping("/list")
 	public String list(PageObject pageObject, Model model) throws Exception{
 		// 데이터를 받으면 처리 결과를 리퀘스트에 담는데, 스프링에서는 model에 담는다
 		// model에 넣어주면 request에 담기도록 프로그램 되어있다.
@@ -107,6 +109,7 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	public String fileUpload(Model model, MultipartRequest multipartRequest, HttpServletRequest request) throws IOException{
+		System.out.println("컨트롤러 요청들어옴");
 		MultipartFile imgfile = multipartRequest.getFile("Filedata");
 		Calendar cal = Calendar.getInstance();
 		String fileName = imgfile.getOriginalFilename();
@@ -117,7 +120,7 @@ public class BoardController {
 		FileUpload.fileUpload(imgfile, path, replaceName);
 		model.addAttribute("path", path);
 		model.addAttribute("filename", replaceName);
-		return "file_upload";
+		return "board/file_upload";
 	}
 
 }
